@@ -1,15 +1,11 @@
+"use client"
 
-import { signIn } from "@/auth"
- 
+import { handleSignIn } from "../actions/authActions"
+
 export default function SignIn() {
   return (
-    <form
-      action={async () => {
-        // "use server"
-        await signIn("google")
-      }}
-    >
+    <form action={handleSignIn}>
       <button type="submit">Signin with Google</button>
     </form>
   )
-} 
+}
