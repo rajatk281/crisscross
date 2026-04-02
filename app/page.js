@@ -6,7 +6,7 @@
   import Name from './Components/Name'
   import Heading_text from './Components/Heading_text'
   import SearchBar from './Components/SearchBar'
-  import SignIn from './Components/sign-in'
+  import {Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 
   const Page = () => {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -22,17 +22,20 @@
         </button>
 
         <div className="fixed top-6 right-6 z-[100]">
-          {/* <button 
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white hover:border-white/20 transition-all shadow-xl active:scale-95 group"
-            aria-label="User Profile"
-          >
-            <div className="relative">
-              <User size={20} />
-      
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-zinc-900 rounded-full" />
-            </div>
-          </button> */}
-          <SignIn/>
+          <header className="flex justify-end items-center p-4 gap-4 h-16">
+            <Show when="signed-out">
+              <SignInButton />
+              <SignUpButton>
+                <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </Show>
+            <Show when="signed-in">
+              <UserButton />
+            </Show>
+          </header>
+          {/* <SignIn/> */}
         </div>
 
     
